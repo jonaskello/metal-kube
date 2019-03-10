@@ -25,7 +25,7 @@ This script will get the version of docker and kubernetes binaries from the mast
 # Set the SSH info for the master
 export MK_MASTER_SSH=myuser@mymaster
 
-# Provision the worker node (substitue myuser@mymaster to your username and your master node)
+# Provision the worker node
 curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/provision-worker.sh -o provision-worker.sh && bash provision-worker.sh
 ```
 
