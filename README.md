@@ -38,6 +38,13 @@ On a master node run this to get the join command:
 kubeadm token create --print-join-command --ttl=1h0m0s
 ```
 
+Or on the worker just run
+
+```bash
+export PROVISION_MASTER_ADR=<IP or DNS of the master node>
+wget --no-cache -O - https://raw.githubusercontent.com/jonaskello/metal-kube/master/provision/provision-worker.sh | bash
+```
+
 Then on the worker node run the command returned by the above script.
 
 ## How to find available versions of docker and kubernetes binaries
