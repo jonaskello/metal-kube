@@ -12,14 +12,14 @@ Next, determine which version you want of docker and kubernetes binaries and set
 
 ```bash
 # Set the versions in env
-$PROVISION_DOCKER_VERSION=18.06.1~ce~3-0~ubuntu
-$PROVISION_KUBE_VERSION=1.13.4-00
+export PROVISION_DOCKER_VERSION=18.06.1~ce~3-0~ubuntu
+export PROVISION_KUBE_VERSION=1.13.4-00
 
 # To provision a master node
-wget -O - https://raw.githubusercontent.com/jonaskello/metal-kube/master/provision/provision.sh | bash
+wget --no-cache -O - https://raw.githubusercontent.com/jonaskello/metal-kube/master/provision/provision.sh | bash
 
 # To provision a worker node
-wget -O - https://raw.githubusercontent.com/jonaskello/metal-kube/master/provision/provision-worker.sh | bash
+wget --no-cache -O - https://raw.githubusercontent.com/jonaskello/metal-kube/master/provision/provision-worker.sh | bash
 ```
 
 ## How to find available versions of docker and kubernetes binaries

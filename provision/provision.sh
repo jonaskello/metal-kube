@@ -17,7 +17,7 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubun
 sudo apt-get update
 
 # Install specific version of docker
-sudo apt-get install docker-ce=$PROVISION_DOCKER_VERSION
+sudo apt-get install -y docker-ce=$PROVISION_DOCKER_VERSION
 apt-mark hold docker-ce
 
 # Give user rights to run docker
