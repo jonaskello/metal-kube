@@ -3,6 +3,9 @@
 # This script install the version of docker specified by $PROVISION_DOCKER_VERSION
 # This scripts installs the version of kubelet, kubeadm, kubectl specified in $PROVISION_KUBE_VERSION
 
+: ${PROVISION_DOCKER_VERSION:?"Need to set PROVISION_DOCKER_VERSION non-empty"}
+: ${PROVISION_KUBE_VERSION:?"Need to set PROVISION_KUBE_VERSION non-empty"}
+
 ### DOCKER
 
 # Add docker repos

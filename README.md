@@ -16,7 +16,7 @@ $PROVISION_DOCKER_VERSION=18.06.1~ce~3-0~ubuntu
 $PROVISION_KUBE_VERSION=1.13.4-00
 
 # To provision a master node
-wget -O - https://raw.githubusercontent.com/jonaskello/metal-kube/master/provision/provision-master.sh | bash
+wget -O - https://raw.githubusercontent.com/jonaskello/metal-kube/master/provision/provision.sh | bash
 
 # To provision a worker node
 wget -O - https://raw.githubusercontent.com/jonaskello/metal-kube/master/provision/provision-worker.sh | bash
