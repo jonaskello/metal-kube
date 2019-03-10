@@ -6,6 +6,8 @@ BASH_XTRACEFD=4
 set -Eeuxo pipefail
 export SHELLOPTS
 
+echo "MK_MASTER_SSH: $MK_MASTER_SSH"
+
 # For example MK_MASTER_SSH=user@masterhost
 : ${MK_MASTER_SSH:?"Need to set MK_MASTER_SSH non-empty, eg. user@my-master-hostname"}
 

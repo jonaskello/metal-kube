@@ -5,8 +5,8 @@ set -x
 # This script install the version of docker specified by $PROVISION_DOCKER_VERSION
 # This scripts installs the version of kubelet, kubeadm, kubectl specified in $PROVISION_KUBE_VERSION
 
-: ${MK_DOCKER:?"Need to set MK_DOCKER_VERSION non-empty"}
-: ${MK_KUBE:?"Need to set MK_KUBE_VERSION non-empty"}
+: ${MK_DOCKER:?"Need to set MK_DOCKER non-empty"}
+: ${MK_KUBE:?"Need to set MK_KUBE non-empty"}
 
 ### DOCKER
 
