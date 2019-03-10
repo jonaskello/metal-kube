@@ -6,7 +6,7 @@ These scripts are designed to work on fresh installs of Ubuntu 16.04.
 
 ## Provision the first master node
 
-Determine which version you want of docker and kubernetes binaries and set them in env. Then run the script.
+This script will install the specified versions of docker and kubernetes binaries. It will then run kubadm to init the node as a master, and install Canal network add-on. Determine which version you want of docker and kubernetes binaries and set them in env. Then run the script.
 
 ```bash
 # Set the versions in env

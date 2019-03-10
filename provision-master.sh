@@ -1,6 +1,10 @@
 #!/bin/bash
 
-set -x
+# Set options to fail properly
+exec 4>&1
+BASH_XTRACEFD=4
+set -Eeuxo pipefail
+export SHELLOPTS
 
 # Run init
 wget --no-cache -O - https://raw.githubusercontent.com/jonaskello/metal-kube/master/init-node.sh | bash
