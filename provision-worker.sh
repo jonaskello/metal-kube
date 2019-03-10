@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set options to fail properly
-#exec 4>&1
+exec 4>&1
 BASH_XTRACEFD=4
 set -Eeuxo pipefail
 export SHELLOPTS
