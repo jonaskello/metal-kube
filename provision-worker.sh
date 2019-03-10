@@ -6,7 +6,7 @@ BASH_XTRACEFD=4
 set -Eeuxo pipefail
 export SHELLOPTS
 
-# For example PROVISION_MASTER_SSH=user@masterhost
+# For example MK_MASTER_SSH=user@masterhost
 : ${MK_MASTER_SSH:?"Need to set MK_MASTER_SSH non-empty, eg. user@my-master-hostname"}
 
 # Get the version of docker, kubernetes binaries, and the join command from the master
