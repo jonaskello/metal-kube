@@ -5,8 +5,8 @@ set -x
 # This script install the version of docker specified by $PROVISION_DOCKER_VERSION
 # This scripts installs the version of kubelet, kubeadm, kubectl specified in $PROVISION_KUBE_VERSION
 
-: ${PROVISION_DOCKER_VERSION:?"Need to set PROVISION_DOCKER_VERSION non-empty"}
-: ${PROVISION_KUBE_VERSION:?"Need to set PROVISION_KUBE_VERSION non-empty"}
+: ${MK_DOCKER:?"Need to set MK_DOCKER_VERSION non-empty"}
+: ${MK_KUBE:?"Need to set MK_KUBE_VERSION non-empty"}
 
 ### DOCKER
 
@@ -19,7 +19,7 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubun
 sudo apt-get update
 
 # Install specific version of docker
-sudo apt-get install -y docker-ce=$PROVISION_DOCKER_VERSION
+sudo apt-get install -y docker-ce=$MK_DOCKER
 apt-mark hold docker-ce
 
 # Give user rights to run docker
@@ -40,5 +40,5 @@ echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/
 sudo apt-get update
 
 # Install kubelet, kubeadm, kubectl
-sudo apt-get install -y kubelet=$PROVISION_KUBE_VERSION kubectl=$PROVISION_KUBE_VERSION kubeadm=$PROVISION_KUBE_VERSION
+sudo apt-get install -y kubelet=$MK_KUBE kubectl=$MK_KUBE kubeadm=$MK_KUBE
 sudo apt-mark hold kubelet kubeadm kubectl
