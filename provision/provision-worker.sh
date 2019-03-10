@@ -7,7 +7,7 @@
 ssh $PROVISION_MASTER_SSH "dpkg-query --showformat='\${Version}' --show docker-ce && dpkg-query --showformat='\${Version}' --show kubeadm"
 
 # Get the version of docker, kubernetes binaries, and join command from the master
-declare RESULT=($(dpkg-query --showformat='${Version}' --show docker-ce && printf "\n" && dpkg-query --showformat='${Version}' --show kubeadm && printf "\n" && kubeadm token create --print-join-command --ttl=1h0m0s))
+declare RESULT=($(dpkg-query --showformat='${Version}' --show docker-ce && echo && dpkg-query --showformat='${Version}' --show kubeadm && echo && kubeadm token create --print-join-command --ttl=1h0m0s))
 MK_DOCKER_VERSION=${RESULT[0]}
 MK_KUBE_VERSION=${RESULT[1]}
 MK_JOIN_CMD=${RESULT[2]}
