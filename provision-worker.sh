@@ -25,4 +25,4 @@ echo "MK_JOIN: $MK_JOIN"
 wget -nv --no-cache -O - https://raw.githubusercontent.com/jonaskello/metal-kube/master/init-node.sh | bash
 
 # Run join
-eval $MK_JOIN
+sudo eval $MK_JOIN
