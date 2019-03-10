@@ -4,7 +4,7 @@
 : ${PROVISION_MASTER_SSH:?"Need to set PROVISION_MASTER_SSH non-empty"}
 
 # Get the version of docker and kubernetes binaries from the master
-ssh $PROVISION_MASTER_SSH "dpkg-query --showformat='\${Version}' --show docker-ce && dpkg-query --showformat='\${Version}' --show kubeadm"
+#ssh $PROVISION_MASTER_SSH "dpkg-query --showformat='\${Version}' --show docker-ce && dpkg-query --showformat='\${Version}' --show kubeadm"
 
 # Get the version of docker, kubernetes binaries, and join command from the master
 declare RESULT=($(dpkg-query --showformat='${Version}' --show docker-ce && echo && dpkg-query --showformat='${Version}' --show kubeadm && echo && kubeadm token create --print-join-command --ttl=1h0m0s))

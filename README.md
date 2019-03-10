@@ -14,7 +14,7 @@ export PROVISION_DOCKER_VERSION=18.06.1~ce~3-0~ubuntu
 export PROVISION_KUBE_VERSION=1.13.4-00
 
 # Init the node (this will install docker and the kubernetes binaries)
-wget --no-cache -O - https://raw.githubusercontent.com/jonaskello/metal-kube/master/provision/init-node.sh | bash
+wget --no-cache -q -O - https://raw.githubusercontent.com/jonaskello/metal-kube/master/provision/init-node.sh | bash
 ```
 
 Now the node is initialized and you can provision it as a master or worker.
