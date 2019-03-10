@@ -20,7 +20,7 @@ sudo apt-get update
 
 # Install specific version of docker
 sudo apt-get install -y docker-ce=$MK_DOCKER
-apt-mark hold docker-ce
+sudo apt-mark hold docker-ce
 
 # Give user rights to run docker
 sudo usermod -aG docker $USER
