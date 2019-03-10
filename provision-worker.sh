@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Set options to fail properly
-#exec 4>&1
-#BASH_XTRACEFD=4
-#set -Eeuxo pipefail
-#export SHELLOPTS
+exec 4>&1
+BASH_XTRACEFD=4
+set -Eeuxo pipefail
+export SHELLOPTS
 
 echo "MK_MASTER_SSH: $MK_MASTER_SSH"
 
