@@ -6,12 +6,19 @@
 # Get the version of docker and kubernetes binaries from the master
 ssh $PROVISION_MASTER_SSH "dpkg-query --showformat='\${Version}' --show docker-ce && dpkg-query --showformat='\${Version}' --show kubeadm"
 
-declare RESULT=($(dpkg-query --showformat='${Version}' --show docker-ce 
- && printf "\n" 
- && dpkg-query --showformat='${Version}' --show kubeadm))
-echo "First line: ${RESULT[0]}"
-echo "Second line: ${RESULT[1]}"
-echo "N-th line: ${RESULT[N]}"
+# Get the version of docker, kubernetes binaries, and join command from the master
+declare RESULT=($(dpkg-query --showformat='${Version}' --show docker-ce && printf "\n" && dpkg-query --showformat='${Version}' --show kubeadm && printf "\n" && kubeadm token create --print-join-command --ttl=1h0m0s))
+MK_DOCKER_VERSION=${RESULT[0]}
+MK_KUBE_VERSION=${RESULT[1]}
+MK_JOIN_CMD=${RESULT[2]}
+
+echo "MK_DOCKER_VERSION: $MK_DOCKER_VERSION"
+echo "MK_KUBE_VERSION: $MK_KUBE_VERSION"
+echo "MK_JOIN_CMD: $MK_JOIN_CMD"
+
+# echo "First line: ${RESULT[0]}"
+# echo "Second line: ${RESULT[1]}"
+# echo "N-th line: ${RESULT[N]}"
 
 # # Run init
 # wget --no-cache -O - https://raw.githubusercontent.com/jonaskello/metal-kube/master/provision/init-node.sh | bash
