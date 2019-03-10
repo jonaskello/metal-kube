@@ -22,7 +22,7 @@ echo "MK_KUBE: $MK_KUBE"
 echo "MK_JOIN: $MK_JOIN"
 
 # Run init
-wget -nv --no-cache -O - https://raw.githubusercontent.com/jonaskello/metal-kube/master/init-node.sh | bash
+curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/init-node.sh | bash
 
 # Run join
 eval sudo $MK_JOIN

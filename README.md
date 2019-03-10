@@ -14,7 +14,7 @@ export PROVISION_DOCKER_VERSION=18.06.1~ce~3-0~ubuntu
 export PROVISION_KUBE_VERSION=1.13.4-00
 
 # Init the first master with Canal network add-on
-wget -nv --no-cache -O - https://raw.githubusercontent.com/jonaskello/metal-kube/master/provision-master.sh | bash
+curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/provision-master.sh | bash
 ```
 
 ## Provision a worker node
@@ -27,8 +27,6 @@ export MK_MASTER_SSH=myuser@mymaster
 
 # Provision the worker node (substitue myuser@mymaster to your username and your master node)
 curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/provision-worker.sh -o provision-worker.sh && bash provision-worker.sh
-
-wget -nv --no-cache -O - https://raw.githubusercontent.com/jonaskello/metal-kube/master/provision-worker.sh | bash
 ```
 
 ## How to find available versions of docker and kubernetes binaries
