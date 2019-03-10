@@ -7,7 +7,7 @@ set -Eeuxo pipefail
 export SHELLOPTS
 
 # Run init
-wget --no-cache -O - https://raw.githubusercontent.com/jonaskello/metal-kube/master/init-node.sh | bash
+wget -nv --no-cache -O - https://raw.githubusercontent.com/jonaskello/metal-kube/master/init-node.sh | bash
 
 # Init the master using param for Canal network add-on
 sudo kubeadm init --pod-network-cidr=10.244.0.0/16
