@@ -22,9 +22,6 @@ curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/provis
 This script will get the version of docker and kubernetes binaries from the master, and install the same on the worker. It will also get the kubeadm join command from the master and run it.
 
 ```bash
-# Set the SSH info for the master
-export MK_MASTER_SSH=myuser@mymaster
-
 # Provision the worker node (substitue myuser@mymaster to your username and master node, the user need ssh access to the master node)
 curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/provision-worker.sh -o provision-worker.sh && bash provision-worker.sh myuser@mymaster
 ```
