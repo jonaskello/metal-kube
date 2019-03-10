@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 # This script install the version of docker specified by $PROVISION_DOCKER_VERSION
 # This scripts installs the version of kubelet, kubeadm, kubectl specified in $PROVISION_KUBE_VERSION
 
