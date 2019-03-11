@@ -5,7 +5,7 @@
 # Set options to fail properly
 exec 4>&1
 BASH_XTRACEFD=4
-set -Eeuxo pipefail
+set -Eeuo pipefail
 export SHELLOPTS
 
 # Get the version of docker, kubernetes binaries, and the join command
