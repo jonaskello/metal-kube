@@ -9,8 +9,8 @@ set -Eeuo pipefail
 export SHELLOPTS
 
 # Get the version of docker, kubernetes binaries, and the join command
-MK_DOCKER=$(dpkg-query --showformat='\${Version}' --show docker-ce)
-MK_KUBE=$(dpkg-query --showformat='\${Version}' --show kubeadm)
+MK_DOCKER=$(dpkg-query --showformat='${Version}' --show docker-ce)
+MK_KUBE=$(dpkg-query --showformat='${Version}' --show kubeadm)
 MK_JOIN=$(kubeadm token create --print-join-command --ttl=1h0m0s)
 
 echo "MK_DOCKER: $MK_DOCKER"
