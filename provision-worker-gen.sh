@@ -13,8 +13,6 @@ MK_DOCKER=$(dpkg-query --showformat='${Version}' --show docker-ce)
 MK_KUBE=$(dpkg-query --showformat='${Version}' --show kubeadm)
 MK_JOIN=$(kubeadm token create --print-join-command --ttl=1h0m0s)
 
-echo "MK_DOCKER: $MK_DOCKER"
-
 # Generate the command
 echo "Run the command below on the worker to provision it:"
 echo "curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/provision-worker-run.sh | bash -s -- $MK_DOCKER $MK_KUBE \"$MK_JOIN\""
