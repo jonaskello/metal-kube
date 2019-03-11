@@ -22,11 +22,10 @@ This script shuold be run on a master node. It will generate a bash command that
 curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/provision-worker-gen.sh | bash
 ```
 
-This script will get the version of docker and kubernetes binaries from the master, and install the same on the worker. It will also get the kubeadm join command from the master and run it.
+If the worker has ssh access to the master you can also run directly on the worker:
 
 ```bash
-# Provision the worker node (substitue <myuser@mymaster> to your username and master node, the user need ssh access to the master node)
-curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/provision-worker.sh -o provision-worker.sh && bash provision-worker.sh <myuser@mymaster>
+ssh myuser@mymaster "curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/provision-worker-gen.sh | bash" > bash
 ```
 
 ## How to find available versions of docker and kubernetes binaries
