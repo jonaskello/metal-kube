@@ -6,8 +6,8 @@ BASH_XTRACEFD=4
 set -Eeuxo pipefail
 export SHELLOPTS
 
-# Run init
-curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/init-node.sh | bash
+# Run init-node (pass through arguments which are docker version and k8s version)
+curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/init-node.sh | bash -s -- $1 $2
 
 # Init the master using param for Canal network add-on
 sudo kubeadm init --pod-network-cidr=10.244.0.0/16

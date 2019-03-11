@@ -9,15 +9,18 @@ These scripts are designed to work on fresh installs of Ubuntu 16.04.
 This script will install the specified versions of docker and kubernetes binaries. It will then run kubadm to init the node as a master, and install Canal network add-on. Determine which version you want of docker and kubernetes binaries and set them in env. Then run the script.
 
 ```bash
-# Set the versions in env
-export PROVISION_DOCKER_VERSION=18.06.1~ce~3-0~ubuntu
-export PROVISION_KUBE_VERSION=1.13.4-00
-
-# Init the first master with Canal network add-on
-curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/provision-master.sh | bash
+# Init the first master with Canal network add-on, docker version 18.06.1~ce~3-0~ubuntu, kubernetes version 1.13.4-00
+curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/provision-master.sh | bash -s -- 18.06.1~ce~3-0~ubuntu 1.13.4-00
 ```
 
 ## Provision a worker node
+
+This script shuold be run on a master node. It will generate a bash command that should be run on the worker node in order to install docker, kubernetes binaries and join the node to the cluster.
+
+```bash
+# Run this on a master node to generate a worker provisioning command, then run the generated command on the worker to provision it
+curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/provision-worker-gen.sh | bash
+```
 
 This script will get the version of docker and kubernetes binaries from the master, and install the same on the worker. It will also get the kubeadm join command from the master and run it.
 
@@ -45,12 +48,8 @@ apt-cache madison docker-ce
 If you want to run kubeadm yourself, you can run the init script to just install docker and the kubernetes binaries. It will install docker and kubernetes binaries needed by all nodes, regardless of role (master, worker). Determine which version you want of docker and kubernetes binaries and set them in env. Then run the init script.
 
 ```bash
-# Set the versions in env
-export PROVISION_DOCKER_VERSION=18.06.1~ce~3-0~ubuntu
-export PROVISION_KUBE_VERSION=1.13.4-00
-
-# Init the node (this will install docker and the kubernetes binaries)
-wget --no-cache -q -O - https://raw.githubusercontent.com/jonaskello/metal-kube/master/init-node.sh | bash
+# This will install docker version 18.06.1~ce~3-0~ubuntu and kubernetes binaries version 1.13.4-00
+curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/init-node.sh -o init-node.sh && bash init-node.sh 18.06.1~ce~3-0~ubuntu 1.13.4-00
 ```
 
 Now the node is initialized and you can provision it as a master or worker.

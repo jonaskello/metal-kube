@@ -1,12 +1,26 @@
 #!/bin/bash
 
-set -x
+# This script install the version of docker specified by $1
+# This scripts installs the version of kubelet, kubeadm, kubectl specified in $2
 
-# This script install the version of docker specified by $PROVISION_DOCKER_VERSION
-# This scripts installs the version of kubelet, kubeadm, kubectl specified in $PROVISION_KUBE_VERSION
+# Set options to fail properly
+exec 4>&1
+BASH_XTRACEFD=4
+set -Eeuxo pipefail
+export SHELLOPTS
 
-: ${MK_DOCKER:?"Need to set MK_DOCKER non-empty"}
-: ${MK_KUBE:?"Need to set MK_KUBE non-empty"}
+# Verify arguments
+if [ -z "$1" ]
+  then
+    echo "The argument for docker version was not supplied."
+fi
+MK_DOCKER=$1
+if [ -z "$2" ]
+  then
+    echo "The argument for kubernetes binaries version was not supplied."
+fi
+MK_KUBE=$2
+
 
 ### DOCKER
 
