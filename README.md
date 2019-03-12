@@ -25,7 +25,7 @@ curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/provis
 If the worker has ssh access to the master you can also run directly on the worker:
 
 ```bash
-ssh myuser@mymaster "curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/provision-worker-gen.sh | bash" > bash
+ssh myuser@mymaster "curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/provision-worker-gen.sh | bash" | bash
 ```
 
 ## How to find available versions of docker and kubernetes binaries
