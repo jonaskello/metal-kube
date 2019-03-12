@@ -13,7 +13,7 @@ export SHELLOPTS
 # Get the cluster-config.yaml file
 TMP_DIR=$(mktemp -d)
 trap "rm -rf $TMP_DIR" EXIT
-curl -fsSL $3 -o $TMP_DIR/cluster-config.yaml
+curl -fsSL $2 -o $TMP_DIR/cluster-config.yaml
 
 # Figure out the version of k8s binaries to install from the cluster-config.yaml
 k8s_ver_raw=$(grep 'kubernetesVersion:' cluster-config.yaml | awk '{ print $2}')
@@ -22,7 +22,7 @@ k8s_ver="${k8s_ver_raw2#\"}"
 echo "k8s_ver: $k8s_ver-00"
 
 # Run init-node (pass through arguments which are docker version and k8s version)
-curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/init-node.sh | bash -s -- $1 $2
+curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/init-node.sh | bash -s -- $1 $k8s_ver-00
 
 # Init the master using the config file (it needs to specify podSubnet: "10.244.0.0/16" for Canal)
 sudo kubeadm init --config=$TMP_DIR/cluster-config.yaml

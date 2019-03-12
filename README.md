@@ -9,7 +9,7 @@ These scripts are designed to work on fresh installs of Ubuntu 16.04.
 This script will install the specified versions of docker and kubernetes binaries. It will then run kubadm to init the node as a master, and install Canal network add-on. Determine which version you want of docker and kubernetes binaries and set them in env. Then run the script.
 
 ```bash
-# Init the first master with Canal network add-on, docker version 18.06.1~ce~3-0~ubuntu, kubernetes version 1.13.4-00
+# Init the first master with docker version 18.06.1~ce~3-0~ubuntu, specified cluster-config.yaml, and Canal network add-on
 curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/first-master.sh | bash -s -- 18.06.1~ce~3-0~ubuntu https://raw.githubusercontent.com/jonaskello/metal-kube/master/cluster-config.yaml
 ```
 
