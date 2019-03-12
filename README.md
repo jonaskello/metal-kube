@@ -10,7 +10,7 @@ This script will install the specified versions of docker and kubernetes binarie
 
 ```bash
 # Init the first master with Canal network add-on, docker version 18.06.1~ce~3-0~ubuntu, kubernetes version 1.13.4-00
-curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/first-master.sh | bash -s -- 18.06.1~ce~3-0~ubuntu 1.13.4-00 https://raw.githubusercontent.com/jonaskello/metal-kube/master/cluster-config.yaml
+curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/first-master.sh | bash -s -- 18.06.1~ce~3-0~ubuntu https://raw.githubusercontent.com/jonaskello/metal-kube/master/cluster-config.yaml
 ```
 
 ## Provision a worker node

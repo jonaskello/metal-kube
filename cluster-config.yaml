@@ -1,7 +1,7 @@
 apiVersion: kubeadm.k8s.io/v1beta1
 kind: ClusterConfiguration
 olle: extra
-#kubernetesVersion: "1.13.4"
+kubernetesVersion: "1.13.4"
 # apiServer:
 #   certSANs:
 #     - "LOAD_BALANCER_DNS"
