@@ -1,0 +1,9 @@
+apiVersion: kubeadm.k8s.io/v1beta1
+kind: ClusterConfiguration
+kubernetesVersion: "1.13.4-00"
+# apiServer:
+#   certSANs:
+#     - "LOAD_BALANCER_DNS"
+# controlPlaneEndpoint: "LOAD_BALANCER_DNS:LOAD_BALANCER_PORT"
+networking:
+  podSubnet: "10.244.0.0/16"
