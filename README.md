@@ -44,11 +44,9 @@ apt-cache madison docker-ce
 
 ## Init node
 
-If you want to run kubeadm yourself, you can run the init script to just install docker and the kubernetes binaries. It will install docker and kubernetes binaries needed by all nodes, regardless of role (master, worker). Determine which version you want of docker and kubernetes binaries and set them in env. Then run the init script.
+If you want to run kubeadm yourself, you can run the init script to just install docker and the kubernetes binaries. It will install docker and kubernetes binaries that are needed by all nodes, regardless of role (master, worker). Determine which version you want of docker and kubernetes binaries and add them as parameters at the end of the command.
 
 ```bash
 # This will install docker version 18.06.1~ce~3-0~ubuntu and kubernetes binaries version 1.13.4-00
 curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/init-node.sh -o init-node.sh && bash init-node.sh 18.06.1~ce~3-0~ubuntu 1.13.4-00
 ```
-
-Now the node is initialized and you can provision it as a master or worker.
