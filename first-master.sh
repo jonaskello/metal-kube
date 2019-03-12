@@ -19,7 +19,7 @@ curl -fsSL $2 -o $TMP_DIR/cluster-config.yaml
 k8s_ver_raw=$(grep 'kubernetesVersion:' cluster-config.yaml | awk '{ print $2}')
 k8s_ver_raw2="${k8s_ver_raw%\"}"
 k8s_ver="${k8s_ver_raw2#\"}"
-echo "k8s_ver: $k8s_ver-00"
+echo "Found kubernetes version in cluster config file: $k8s_ver"
 
 # Run init-node (pass through arguments which are docker version and k8s version)
 curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/init-node.sh | bash -s -- $1 $k8s_ver-00
