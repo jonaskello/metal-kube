@@ -10,8 +10,10 @@ export SHELLOPTS
 curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/init-node.sh | bash -s -- $1 $2
 
 # Init the master using the config file (it needs to specify podSubnet: "10.244.0.0/16" for Canal)
-curl -fsSL $3 -o cluster-config.yaml
-sudo kubeadm init --config=cluster-config.yaml
+TMP_DIR=$(mktemp -d)
+trap "rm -rf $TMP_DIR" EXIT
+curl -fsSL $3 -o $TMP_DIR/cluster-config.yaml
+sudo kubeadm init --config=$TMP_DIR/cluster-config.yaml
 
 # In order to run kubectl the user needs access
 mkdir -p $HOME/.kube
