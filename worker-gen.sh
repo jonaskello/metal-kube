@@ -14,4 +14,5 @@ MK_KUBE=$(dpkg-query --showformat='${Version}' --show kubeadm)
 MK_JOIN=$(kubeadm token create --print-join-command --ttl=1h0m0s)
 
 # Generate the command
-echo "curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/worker-run.sh | bash -s -- $MK_DOCKER $MK_KUBE \"$MK_JOIN\""
+# echo "curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/worker-run.sh | bash -s -- $MK_DOCKER $MK_KUBE \"$MK_JOIN\""
+echo "curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/init-node.sh | bash -s -- $MK_DOCKER $MK_KUBE && $MK_JOIN"
