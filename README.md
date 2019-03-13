@@ -20,14 +20,14 @@ curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/first-
 
 ## Provision a worker node
 
-This requires no parameters. It shuold be run on a master node. It will generate a bash command that should be run on the worker node in order to install docker, kubernetes binaries (same vesion as the master node) and join the node to the cluster.
+This script requires no parameters. It shuold be run on a master node. It will generate a bash command that should be run on the worker node in order to install docker, kubernetes binaries (same vesion as the master node) and join the node to the cluster.
 
 ```bash
 # Run this on a master node to generate a worker provisioning command, then run the generated command on the worker to provision it
 curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/worker-gen.sh | bash
 ```
 
-Alternatively, if the worker has ssh access to the master you can also run directly on the worker:
+Alternatively, if the worker has ssh access to the master you can run it on the worker:
 
 ```bash
 ssh myuser@mymaster "curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/worker-gen.sh | bash" | bash
@@ -35,7 +35,43 @@ ssh myuser@mymaster "curl -fsSL https://raw.githubusercontent.com/jonaskello/met
 
 ## Provision additional master nodes
 
-TODO!
+```bash
+ssh myuser@mymaster "curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/add-master-get.sh | bash" | bash
+```
+
+Copy the certificate files from the first control plane node to the rest:
+
+In the following example, replace CONTROL_PLANE_IPS with the IP addresses of the other control plane nodes.
+
+USER=ubuntu # customizable
+CONTROL_PLANE_IPS="10.0.0.7 10.0.0.8"
+for host in ${CONTROL_PLANE_IPS}; do
+    scp /etc/kubernetes/pki/ca.crt "${USER}"@$host:/etc/kubernetes/pki/
+    scp /etc/kubernetes/pki/ca.key "${USER}"@$host:/etc/kubernetes/pki/
+    scp /etc/kubernetes/pki/sa.key "${USER}"@$host:/etc/kubernetes/pki/
+    scp /etc/kubernetes/pki/sa.pub "${USER}"@$host:/etc/kubernetes/pki/
+    scp /etc/kubernetes/pki/front-proxy-ca.crt "${USER}"@$host:/etc/kubernetes/pki/
+    scp /etc/kubernetes/pki/front-proxy-ca.key "${USER}"@$host:/etc/kubernetes/pki/
+    scp /etc/kubernetes/pki/etcd/ca.crt "${USER}"@$host:/etc/kubernetes/pki/etcd/
+    scp /etc/kubernetes/pki/etcd/ca.key "${USER}"@$host:/etc/kubernetes/pki/etcd/
+    scp /etc/kubernetes/admin.conf "${USER}"@\$host:/etc/kubernetes/
+done
+
+Move the files created by the previous step where scp was used:
+
+USER=ubuntu # customizable
+mkdir -p /etc/kubernetes/pki/etcd
+mv /home/${USER}/ca.crt /etc/kubernetes/pki/
+mv /home/${USER}/ca.key /etc/kubernetes/pki/
+mv /home/${USER}/sa.pub /etc/kubernetes/pki/
+mv /home/${USER}/sa.key /etc/kubernetes/pki/
+mv /home/${USER}/front-proxy-ca.crt /etc/kubernetes/pki/
+mv /home/${USER}/front-proxy-ca.key /etc/kubernetes/pki/
+mv /home/${USER}/etcd-ca.crt /etc/kubernetes/pki/etcd/ca.crt
+mv /home/${USER}/etcd-ca.key /etc/kubernetes/pki/etcd/ca.key
+mv /home/\${USER}/admin.conf /etc/kubernetes/admin.conf
+
+sudo kubeadm join 192.168.0.200:6443 --token j04n3m.octy8zely83cy2ts --discovery-token-ca-cert-hash sha256:84938d2a22203a8e56a787ec0c6ddad7bc7dbd52ebabc62fd5f4dbea72b14d1f --experimental-control-plane
 
 ## How to find available versions of docker and kubernetes binaries
 
