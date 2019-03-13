@@ -6,7 +6,12 @@ These scripts are designed to work on fresh installs of Ubuntu 16.04.
 
 ## Provision the first master node
 
-This script will install the specified versions of docker and kubernetes binaries. It will then run kubadm to init the node as a master, and install Canal network add-on. Determine which version you want of docker and kubernetes binaries and set them in env. Then run the script.
+This script takes two parameters:
+
+1. Docker version to install.
+2. URL for a cluster-config.yml file.
+
+It will install the version of docker specified by the firest parameter, and the version of kubernetes binaries specified in the cluster-config.yml file.
 
 ```bash
 # Init the first master with docker version 18.06.1~ce~3-0~ubuntu, specified cluster-config.yaml, and Canal network add-on
@@ -15,18 +20,22 @@ curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/first-
 
 ## Provision a worker node
 
-This script shuold be run on a master node. It will generate a bash command that should be run on the worker node in order to install docker, kubernetes binaries and join the node to the cluster.
+This requires no parameters. It shuold be run on a master node. It will generate a bash command that should be run on the worker node in order to install docker, kubernetes binaries (same vesion as the master node) and join the node to the cluster.
 
 ```bash
 # Run this on a master node to generate a worker provisioning command, then run the generated command on the worker to provision it
 curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/worker-gen.sh | bash
 ```
 
-If the worker has ssh access to the master you can also run directly on the worker:
+Alternatively, if the worker has ssh access to the master you can also run directly on the worker:
 
 ```bash
 ssh myuser@mymaster "curl -fsSL https://raw.githubusercontent.com/jonaskello/metal-kube/master/worker-gen.sh | bash" | bash
 ```
+
+## Provision additional master nodes
+
+TODO!
 
 ## How to find available versions of docker and kubernetes binaries
 
